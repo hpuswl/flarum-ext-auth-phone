@@ -1,15 +1,15 @@
 <?php
 
 /*
- * This file is part of hamcq/flarum-ext-auth-phone.
+ * This file is part of hpuswl/flarum-ext-auth-phone.
  *
- * Copyright (c) 2022 Emin.lin(BG5UWQ).
+ * Copyright (c) 2022 Solvay.
  *
  * For the full copyright and license information, please view the LICENSE.md
  * file that was distributed with this source code.
  */
 
-namespace HamCQ\AuthPhone;
+namespace Hpuswl\AuthPhone;
 
 use Flarum\Extend;
 use Flarum\Api\Serializer\ForumSerializer;
@@ -17,12 +17,14 @@ use Flarum\Api\Serializer\UserSerializer;
 use FoF\Components\Extend\AddFofComponents;
 use Flarum\User\Event\Saving;
 
-use HamCQ\AuthPhone\Listener\SavePhone;
-use HamCQ\AuthPhone\Middlewares\DiscussionMiddleware;
-use HamCQ\AuthPhone\Console\BuildKeyCommand;
+use Hpuswl\AuthPhone\Listener\SavePhone;
+use Hpuswl\AuthPhone\Middlewares\DiscussionMiddleware;
+use Hpuswl\AuthPhone\Console\BuildKeyCommand;
+use Hpuswl\AuthPhone\Common\Aes;
+use Hpuswl\AuthPhone\KeyDisk;
 
 use Flarum\Foundation\Paths;
-use HamCQ\AuthPhone\Middlewares\BioLimitMiddleware;
+use Hpuswl\AuthPhone\Middlewares\BioLimitMiddleware;
 
 return [
     //需要引入 不然前端会报错
@@ -41,7 +43,8 @@ return [
 
     //接口
     (new Extend\Routes('api'))
-        ->post('/auth/sms/send', 'auth.sms.api.send', Controllers\SMSSendController::class),
+        ->post('/auth/sms/send', 'auth.sms.api.send', Controllers\SMSSendController::class)
+        ->post('/auth/sms/login', 'auth.sms.api.login', Controllers\PhoneLoginController::class),
 
     //发帖限制
     (new Extend\ApiSerializer(ForumSerializer::class))
@@ -84,16 +87,25 @@ return [
                 'isAuth' => $isAuth
             ];
 
+            if ($serializer->getActor()->isAdmin()) {
+                $disk = resolve(KeyDisk::class);
+                $info = $disk->get();
+                $aes = new Aes($info["key"], $info["iv"]);
+                $attributes['phone'] = $user->phone ? $aes->Decrypt($user->phone) : '';
+                $attributes['phone_region'] = $user->phone_region;
+            }
+
             return $attributes;
         }),
 
     (new Extend\Settings())
-        ->serializeToForum('hamcqAuthPhoneTips', 'hamcqAuthPhoneTips', 'boolVal')
-        ->serializeToForum('hamcqAuthPhoneTipsOneTitle', 'hamcqAuthPhoneTipsOneTitle')
-        ->serializeToForum('hamcqAuthPhoneTipsOneUrl', 'hamcqAuthPhoneTipsOneUrl')
-        ->serializeToForum('hamcqAuthPhoneTipsTwoTitle', 'hamcqAuthPhoneTipsTwoTitle')
-        ->serializeToForum('hamcqAuthPhoneTipsTwoUrl', 'hamcqAuthPhoneTipsTwoUrl')
-        ->serializeToForum('hamcqAuthPhoneTipsThreeTitle', 'hamcqAuthPhoneTipsThreeTitle')
-        ->serializeToForum('hamcqAuthPhoneTipsThreeUrl', 'hamcqAuthPhoneTipsThreeUrl')
+        ->serializeToForum('hpuswlAuthPhonePostChineseLand', 'hpuswl-auth-phone.support_traditional', 'boolVal')
+        ->serializeToForum('hpuswlAuthPhoneTips', 'hpuswlAuthPhoneTips', 'boolVal')
+        ->serializeToForum('hpuswlAuthPhoneTipsOneTitle', 'hpuswlAuthPhoneTipsOneTitle')
+        ->serializeToForum('hpuswlAuthPhoneTipsOneUrl', 'hpuswlAuthPhoneTipsOneUrl')
+        ->serializeToForum('hpuswlAuthPhoneTipsTwoTitle', 'hpuswlAuthPhoneTipsTwoTitle')
+        ->serializeToForum('hpuswlAuthPhoneTipsTwoUrl', 'hpuswlAuthPhoneTipsTwoUrl')
+        ->serializeToForum('hpuswlAuthPhoneTipsThreeTitle', 'hpuswlAuthPhoneTipsThreeTitle')
+        ->serializeToForum('hpuswlAuthPhoneTipsThreeUrl', 'hpuswlAuthPhoneTipsThreeUrl')
         ,
 ];

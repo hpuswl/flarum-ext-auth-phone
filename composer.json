@@ -1,5 +1,5 @@
 {
-  "name": "hamcq/flarum-ext-auth-phone",
+  "name": "hpuswl/flarum-ext-auth-phone",
   "description": "auth by phone sms once code",
   "keywords": [
     "flarum","sms","phone","aliyun","tencentCloud","auth"
@@ -10,18 +10,19 @@
     "flarum/core": "*",
     "fof/components": "^1.0.0",
     "alibabacloud/dysmsapi-20170525": "2.0.22",
-    "alibabacloud/darabonba-openapi": "^0.2.8"
+    "alibabacloud/darabonba-openapi": "^0.2.8",
+    "tencentcloud/tencentcloud-sdk-php": "^3.0"
   },
   "authors": [
     {
-      "name": "Emin.lin",
-      "email": "Emin.lin@live.com",
+      "name": "Solvay",
+      "email": "solvay.su@hpuswlfish.cn",
       "role": "Developer"
     }
   ],
   "autoload": {
     "psr-4": {
-      "HamCQ\\AuthPhone\\": "src/"
+      "Hpuswl\\AuthPhone\\": "src/"
     }
   },
   "extra": {

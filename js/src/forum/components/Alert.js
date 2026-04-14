@@ -9,7 +9,8 @@ export default class UpdateAlert {
     if(!user){
       return true;
     }
-    return user.data.attributes.SMSAuth.isAuth;
+    const smsAuth = user.attribute('SMSAuth');
+    return smsAuth && smsAuth.isAuth;
   }
 
   view(){
@@ -25,7 +26,7 @@ export default class UpdateAlert {
             app.modal.show(LinkModal);
           },
         },
-        app.translator.trans('hamcq-auth-phone.forum.alerts.toLink')
+        app.translator.trans('hpuswl-auth-phone.forum.alerts.toLink')
       ),
     ];
     const dismissControl = [];
@@ -33,7 +34,7 @@ export default class UpdateAlert {
         '.Alert.Alert-info',
         m('.container', [
           m(
-            'span.Alert-body', app.translator.trans(`hamcq-auth-phone.forum.alerts.limit`)
+            'span.Alert-body', app.translator.trans(`hpuswl-auth-phone.forum.alerts.limit`)
           ),
           m('ul.Alert-controls',  listItems(controls.concat(dismissControl))),
         ])

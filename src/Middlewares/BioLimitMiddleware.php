@@ -1,6 +1,6 @@
 <?php
 
-namespace HamCQ\AuthPhone\Middlewares;
+namespace Hpuswl\AuthPhone\Middlewares;
 
 use Flarum\User\Event\Saving;
 use Illuminate\Support\Arr;

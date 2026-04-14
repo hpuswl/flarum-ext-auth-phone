@@ -1,5 +1,5 @@
 <?php
-namespace HamCQ\AuthPhone\Common;
+namespace Hpuswl\AuthPhone\Common;
 class Aes 
 {
     protected $key;//32

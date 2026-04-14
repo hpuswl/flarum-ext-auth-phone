@@ -1,6 +1,6 @@
 <?php
 
-namespace HamCQ\AuthPhone\Middlewares;
+namespace Hpuswl\AuthPhone\Middlewares;
 
 use Flarum\Foundation\ErrorHandling\ExceptionHandler\IlluminateValidationExceptionHandler;
 use Flarum\Foundation\ErrorHandling\JsonApiFormatter;
@@ -37,7 +37,7 @@ class DiscussionMiddleware implements MiddlewareInterface
                             'source' => [
                                 'pointer' => $path,
                             ],
-                            'detail' => $translator->trans('hamcq-auth-phone.forum.alerts.phone_need'),
+                            'detail' => $translator->trans('hpuswl-auth-phone.forum.alerts.phone_need'),
                         ],
                     ]);
                     $document = new Document();
@@ -46,7 +46,7 @@ class DiscussionMiddleware implements MiddlewareInterface
                     return new JsonApiResponse($document, $error->getStatus());
                 }
                 if($actor->phone_region!="86"){
-                    $settings = resolve(SettingsRepositoryInterface::class)->get('hamcqAuthPhonePostChineseLand');
+                    $settings = resolve(SettingsRepositoryInterface::class)->get('hpuswl-auth-phone.support_traditional');
                     if(!$settings){
                         $translator = resolve(TranslatorInterface::class);
                         $error = new ResponseBag('422', [
@@ -56,7 +56,7 @@ class DiscussionMiddleware implements MiddlewareInterface
                                 'source' => [
                                     'pointer' => $path,
                                 ],
-                                'detail' => $translator->trans('hamcq-auth-phone.forum.alerts.region_invalid'),
+                                'detail' => $translator->trans('hpuswl-auth-phone.forum.alerts.region_invalid'),
                             ],
                         ]);
                         $document = new Document();

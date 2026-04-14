@@ -1,3 +1,5 @@
-module.exports = require('flarum-webpack-config')({
-    useExtensions: ['fof-components'],
+const config = require('flarum-webpack-config');
+
+module.exports = config({
+  useExtensions: ['fof-components'],
 });

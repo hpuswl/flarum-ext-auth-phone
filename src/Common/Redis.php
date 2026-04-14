@@ -1,2 +1,2 @@
 <?php
-namespace HamCQ\AuthPhone\Common;
+namespace Hpuswl\AuthPhone\Common;

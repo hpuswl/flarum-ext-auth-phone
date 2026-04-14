@@ -1,6 +1,6 @@
 <?php
 
-namespace HamCQ\AuthPhone;
+namespace Hpuswl\AuthPhone;
 
 use Flarum\Database\AbstractModel;
 

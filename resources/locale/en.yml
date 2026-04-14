@@ -1,13 +1,40 @@
-hamcq-auth-phone:
+hpuswl-auth-phone:
   admin:
     settings:
+      provider: SMS Provider
+      aliyun: Alibaba Cloud (Aliyun)
+      tencent: Tencent Cloud
+      huawei: Huawei Cloud
+      qiniu: Qiniu Cloud
       api_sms_ali_access_id: Aliyun accessKeyId
       api_sms_ali_access_sec: Aliyun accessKeySecret
-      api_sms_ali_sign: Aliyun SMS sign
-      api_sms_ali_template_code: Aliyun template code
-      api_sms_ali_template_code_traditional: Aliyun template code (traditional)
-      api_sms_ali_expire_second: SMS expire second(default:300s)
-      tips_Chinese_land: Allow users from Hong Kong, Macao, and Taiwan to post
+      api_sms_ali_sign: Aliyun SMS Signature
+      api_sms_ali_template_code: Aliyun SMS Template Code (Mainland)
+      api_sms_ali_template_code_traditional: Aliyun SMS Template Code (Traditional)
+      api_sms_ali_expire_second: SMS Expire Second (Default 300)
+      api_sms_tencent_secret_id: Tencent Cloud SecretId
+      api_sms_tencent_secret_key: Tencent Cloud SecretKey
+      api_sms_tencent_region: Tencent Cloud Region (e.g. ap-beijing)
+      api_sms_tencent_app_id: Tencent Cloud SmsSdkAppId
+      api_sms_tencent_sign_name: Tencent Cloud SMS Signature
+      api_sms_tencent_template_id: Tencent Cloud SMS Template ID (Mainland)
+      api_sms_tencent_template_id_traditional: Tencent Cloud SMS Template ID (Traditional)
+      api_sms_tencent_expire_second: SMS Expire Second (Default 300)
+      api_sms_huawei_app_key: Huawei Cloud AppKey
+      api_sms_huawei_app_secret: Huawei Cloud AppSecret
+      api_sms_huawei_endpoint: Huawei Cloud APP Endpoint
+      api_sms_huawei_sender: Huawei Cloud Sender Number
+      api_sms_huawei_signature: Huawei Cloud SMS Signature
+      api_sms_huawei_template_id: Huawei Cloud SMS Template ID (Mainland)
+      api_sms_huawei_template_id_traditional: Huawei Cloud SMS Template ID (Traditional)
+      api_sms_huawei_expire_second: SMS Expire Second (Default 300)
+      api_sms_qiniu_access_key: Qiniu Cloud AccessKey
+      api_sms_qiniu_secret_key: Qiniu Cloud SecretKey
+      api_sms_qiniu_signature: Qiniu Cloud SMS Signature
+      api_sms_qiniu_template_id: Qiniu Cloud SMS Template ID (Mainland)
+      api_sms_qiniu_template_id_traditional: Qiniu Cloud SMS Template ID (Traditional)
+      api_sms_qiniu_expire_second: SMS Expire Second (Default 300)
+      support_traditional: Enable Hong Kong, Macao and Taiwan support
       tips_switch: Why does community need to verify phone numbers?
       tips_title: Title
       tips_url: Url
@@ -30,6 +57,7 @@ hamcq-auth-phone:
       phone_need: Yikes! You need to verify your mobile number.
       param_invalid: Param invalid.
       region_invalid: Region invalid.
+      insufficient_balance: Insufficient balance in SMS provider.
     modals:
       link:
         title: Mobile SMS Auth
@@ -45,5 +73,7 @@ hamcq-auth-phone:
       send: Send
       unlink: Unlink Mobile Phone
       submit: Submit
+      login_with_phone: Login with phone code
+      login_with_password: Login with password
     tips:
       title: Why does community need to verify phone numbers?

@@ -1,5 +1,6 @@
-import Modal from 'flarum/components/Modal';
-import Button from 'flarum/components/Button';
+import app from 'flarum/forum/app';
+import Modal from 'flarum/common/components/Modal';
+import Button from 'flarum/common/components/Button';
 
 export default class UnlinkModal extends Modal {
     className() {
@@ -7,29 +8,22 @@ export default class UnlinkModal extends Modal {
     }
 
     title() {
-        return app.translator.trans(`hamcq-auth-phone.forum.modals.unlink.title`);
+        return app.translator.trans(`hpuswl-auth-phone.forum.modals.unlink.title`);
     }
 
     content() {
         return (
             <div className="Modal-body">
                 <div className="Form Form--centered">
-                    <div className="Form-group" id="submit-button-group">
-                        <h3>{app.translator.trans(`hamcq-auth-phone.forum.modals.unlink.title`)}</h3>
-                        <p className={`SMSAuthText--danger`}><i className="fas fa-exclamation-triangle fa-fw" />
-                            <b>{app.translator.trans(`hamcq-auth-phone.forum.modals.unlink.no_providers`)}</b>
-                        </p>
-                        <br />
-                        <div className="ButtonGroup">
-                            <Button type={'submit'} className={`Button SMSAuthButton--danger`} icon={'fas fa-exclamation-triangle'}
-                                loading={this.loading}>
-                                {app.translator.trans(`hamcq-auth-phone.forum.modals.unlink.confirm`)}
-                            </Button>
-                            <Button className={'Button Button--primary'} icon={'fas fa-exclamation-triangle'}
-                                onclick={() => this.hide()} disabled={this.loading}>
-                                {app.translator.trans(`hamcq-auth-phone.forum.modals.unlink.cancel`)}
-                            </Button>
-                        </div>
+                    <p>{app.translator.trans(`hpuswl-auth-phone.forum.modals.unlink.no_providers`)}</p>
+                    <div className="Form-group">
+                        <Button
+                            className="Button Button--primary Button--block"
+                            type="submit"
+                            loading={this.loading}
+                        >
+                            {app.translator.trans(`hpuswl-auth-phone.forum.modals.unlink.confirm`)}
+                        </Button>
                     </div>
                 </div>
             </div>
@@ -48,20 +42,21 @@ export default class UnlinkModal extends Modal {
             phone: "",
           })
           .catch((error) => {
-                app.alerts.show(
+                const alert = app.alerts.show(
                 Alert,
                 { type: 'error' },
                 error
                 );
+                setTimeout(() => app.alerts.dismiss(alert), 5000);
             })
           .then(() => {
                 this.hide();
                 m.redraw();
-                alert = app.alerts.show({ type: 'success' }, app.translator.trans(`hamcq-auth-phone.forum.alerts.unlink_success`));
+                const alert = app.alerts.show({ type: 'success' }, app.translator.trans(`hpuswl-auth-phone.forum.alerts.unlink_success`));
+                setTimeout(() => {
+                    app.alerts.dismiss(alert);
+                    window.location.reload();
+                }, 3000);
           });
-        setTimeout(() => {
-            app.alerts.dismiss(alert);
-            window.location.reload();
-        }, 3000);
     }
 }

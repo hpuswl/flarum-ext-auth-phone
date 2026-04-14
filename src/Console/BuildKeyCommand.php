@@ -1,15 +1,15 @@
 <?php
 
-namespace HamCQ\AuthPhone\Console;
+namespace Hpuswl\AuthPhone\Console;
 use Illuminate\Console\Command;
 
-use HamCQ\AuthPhone\KeyDisk;
+use Hpuswl\AuthPhone\KeyDisk;
 
 use Symfony\Component\Console\Output\NullOutput;
 
 class BuildKeyCommand extends Command 
 {
-    protected $signature = 'hamcq:aesKey:build';
+    protected $signature = 'hpuswl:aesKey:build';
     protected $description = 'Generate aes key to disk.';
 
     public function handle()
