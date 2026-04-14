@@ -1,6 +1,9 @@
 hpuswl-auth-phone:
   admin:
     settings:
+      basic: 基础设置
+      region_settings: 地区设置
+      tips_settings: 提示设置
       provider: 短信服务商
       aliyun: 阿里云
       tencent: 腾讯云
