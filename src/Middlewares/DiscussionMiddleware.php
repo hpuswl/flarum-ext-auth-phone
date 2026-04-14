@@ -46,7 +46,7 @@ class DiscussionMiddleware implements MiddlewareInterface
                     return new JsonApiResponse($document, $error->getStatus());
                 }
                 if($actor->phone_region!="86"){
-                    $settings = resolve(SettingsRepositoryInterface::class)->get('hpuswl-auth-phone.support_traditional');
+                    $settings = resolve(SettingsRepositoryInterface::class)->get('hpuswlAuthPhonePostChineseLand');
                     if(!$settings){
                         $translator = resolve(TranslatorInterface::class);
                         $error = new ResponseBag('422', [

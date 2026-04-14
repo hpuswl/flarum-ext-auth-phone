@@ -35,6 +35,7 @@ hpuswl-auth-phone:
       api_sms_qiniu_template_id_traditional: 七牛云短信模板 ID（港澳台）
       api_sms_qiniu_expire_second: 七牛云 短信过期时间（秒，默认 300 秒）
       support_traditional: 开启港澳台手机号支持
+      tips_Chinese_land: 允许港澳台地区用户发帖
       tips_switch: 为什么社区需要验证手机号？
       tips_title: 标题
       tips_url: 链接

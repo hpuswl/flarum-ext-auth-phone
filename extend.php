@@ -99,7 +99,8 @@ return [
         }),
 
     (new Extend\Settings())
-        ->serializeToForum('hpuswlAuthPhonePostChineseLand', 'hpuswl-auth-phone.support_traditional', 'boolVal')
+        ->serializeToForum('hpuswlAuthPhoneSupportTraditional', 'hpuswl-auth-phone.support_traditional', 'boolVal')
+        ->serializeToForum('hpuswlAuthPhonePostChineseLand', 'hpuswlAuthPhonePostChineseLand', 'boolVal')
         ->serializeToForum('hpuswlAuthPhoneTips', 'hpuswlAuthPhoneTips', 'boolVal')
         ->serializeToForum('hpuswlAuthPhoneTipsOneTitle', 'hpuswlAuthPhoneTipsOneTitle')
         ->serializeToForum('hpuswlAuthPhoneTipsOneUrl', 'hpuswlAuthPhoneTipsOneUrl')

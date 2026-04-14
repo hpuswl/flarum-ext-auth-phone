@@ -61,7 +61,7 @@ app.initializers.add('hpuswl/flarum-ext-auth-phone', () => {
                 items.remove('identification');
                 items.remove('password');
 
-                const showRegion = app.forum.attribute('hpuswlAuthPhonePostChineseLand');
+                const showRegion = app.forum.attribute('hpuswlAuthPhoneSupportTraditional');
 
                 items.add('phone', (
                     <div className="Form-group">

@@ -198,6 +198,12 @@ export default class SettingsPage extends ExtensionPage {
                     <hr></hr>
                     {this.buildSettingComponent({
                         type: 'boolean',
+                        setting: 'hpuswlAuthPhonePostChineseLand',
+                        label: app.translator.trans(`hpuswl-auth-phone.admin.settings.tips_Chinese_land`),
+                    })}
+                    <hr></hr>
+                    {this.buildSettingComponent({
+                        type: 'boolean',
                         setting: 'hpuswlAuthPhoneTips',
                         label: app.translator.trans(`hpuswl-auth-phone.admin.settings.tips_switch`),
                     })}

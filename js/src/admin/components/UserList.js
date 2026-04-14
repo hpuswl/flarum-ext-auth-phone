@@ -67,7 +67,7 @@ export default function () {
         });
 
         extend(SignUpModal.prototype, 'fields', function(items) {
-            const showRegion = app.forum.attribute('hpuswlAuthPhonePostChineseLand');
+            const showRegion = app.forum.attribute('hpuswlAuthPhoneSupportTraditional');
             items.add('phone', (
                 <div className="Form-group">
                     <label>{app.translator.trans('hpuswl-auth-phone.forum.modals.link.phone')}</label>

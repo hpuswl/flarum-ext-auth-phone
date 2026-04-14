@@ -27,7 +27,7 @@ export default class LinkModal extends Modal {
     }
 
     content() {        
-        const showRegion = app.forum.attribute('hpuswlAuthPhonePostChineseLand');
+        const showRegion = app.forum.attribute('hpuswlAuthPhoneSupportTraditional');
         return (
             <div className="Modal-body">
                 <div className="Form">
