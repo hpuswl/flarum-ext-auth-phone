@@ -8,7 +8,7 @@
   "license": "Apache-2.0",
   "require": {
     "flarum/core": "*",
-    "fof/components": "^1.0.0",
+    "fof/components": "^0.1.0 || ^1.0.0",
     "alibabacloud/dysmsapi-20170525": "2.0.22",
     "alibabacloud/darabonba-openapi": "^0.2.8",
     "tencentcloud/tencentcloud-sdk-php": "^3.0"

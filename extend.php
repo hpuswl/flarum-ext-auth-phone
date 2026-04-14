@@ -14,7 +14,6 @@ namespace Hpuswl\AuthPhone;
 use Flarum\Extend;
 use Flarum\Api\Serializer\ForumSerializer;
 use Flarum\Api\Serializer\UserSerializer;
-use FoF\Components\Extend\AddFofComponents;
 use Flarum\User\Event\Saving;
 
 use Hpuswl\AuthPhone\Listener\SavePhone;
@@ -27,9 +26,6 @@ use Flarum\Foundation\Paths;
 use Hpuswl\AuthPhone\Middlewares\BioLimitMiddleware;
 
 return [
-    //需要引入 不然前端会报错
-    new AddFofComponents(),
-
     //前端文件
     (new Extend\Frontend('forum'))
         ->js(__DIR__.'/js/dist/forum.js')
