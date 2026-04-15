@@ -14,6 +14,11 @@ export default class UpdateAlert {
   }
 
   view(){
+    const enablePhoneVerify = app.forum.attribute('hpuswlAuthPhoneEnablePhoneVerify');
+    if (!enablePhoneVerify) {
+      return m('div');
+    }
+
     if (this.HideAlert()) {
       return m('div');
     }

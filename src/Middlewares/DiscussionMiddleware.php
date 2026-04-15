@@ -27,6 +27,13 @@ class DiscussionMiddleware implements MiddlewareInterface
                     stristr($path, 'avatar') || 
                         stristr($path, 'cover') ) && $request->getMethod() === 'POST') {
             try {
+                $settings = resolve(SettingsRepositoryInterface::class);
+                $enablePhoneVerify = (bool) $settings->get('hpuswl-auth-phone.enable_phone_verify', false);
+                
+                if (!$enablePhoneVerify) {
+                    return $handler->handle($request);
+                }
+                
                 $actor = RequestUtil::getActor($request);
                 if(!$actor->phone){
                     $translator = resolve(TranslatorInterface::class);
@@ -45,9 +52,10 @@ class DiscussionMiddleware implements MiddlewareInterface
                   
                     return new JsonApiResponse($document, $error->getStatus());
                 }
+                
                 if($actor->phone_region!="86"){
-                    $settings = resolve(SettingsRepositoryInterface::class)->get('hpuswlAuthPhonePostChineseLand');
-                    if(!$settings){
+                    $allowTraditional = (bool) $settings->get('hpuswlAuthPhonePostChineseLand', false);
+                    if(!$allowTraditional){
                         $translator = resolve(TranslatorInterface::class);
                         $error = new ResponseBag('422', [
                             [

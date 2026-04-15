@@ -48,6 +48,24 @@ export default class SettingsPage extends ExtensionPage {
                                     <span>{app.translator.trans('hpuswl-auth-phone.admin.settings.support_traditional')}</span>
                                 </label>
                             </div>
+
+                            <div className="Form-group">
+                                <label className="checkbox">
+                                    <input type="checkbox" checked={this.setting('hpuswl-auth-phone.enable_sms_login')() === '1'} onchange={(e) => {
+                                        this.setting('hpuswl-auth-phone.enable_sms_login')(e.target.checked ? '1' : '0');
+                                    }} />
+                                    <span>{app.translator.trans('hpuswl-auth-phone.admin.settings.enable_sms_login')}</span>
+                                </label>
+                            </div>
+
+                            <div className="Form-group">
+                                <label className="checkbox">
+                                    <input type="checkbox" checked={this.setting('hpuswl-auth-phone.enable_phone_verify')() === '1'} onchange={(e) => {
+                                        this.setting('hpuswl-auth-phone.enable_phone_verify')(e.target.checked ? '1' : '0');
+                                    }} />
+                                    <span>{app.translator.trans('hpuswl-auth-phone.admin.settings.enable_phone_verify')}</span>
+                                </label>
+                            </div>
                         </div>
                     </div>
 

@@ -45,10 +45,14 @@ return [
     //发帖限制
     (new Extend\ApiSerializer(ForumSerializer::class))
         ->attribute('canStartDiscussion', function (ForumSerializer $serializer) {
-            if($serializer->getActor()->phone){
-                return true;
+            $settings = resolve(\Flarum\Settings\SettingsRepositoryInterface::class);
+            $enablePhoneVerify = (bool) $settings->get('hpuswl-auth-phone.enable_phone_verify', false);
+            
+            if (!$enablePhoneVerify) {
+                return $serializer->getActor()->can('startDiscussion');
             }
-            return false;
+            
+            return $serializer->getActor()->phone ? true : false;
     }),
 
     //接口限制
@@ -96,6 +100,8 @@ return [
 
     (new Extend\Settings())
         ->serializeToForum('hpuswlAuthPhoneSupportTraditional', 'hpuswl-auth-phone.support_traditional', 'boolVal')
+        ->serializeToForum('hpuswlAuthPhoneEnableSmsLogin', 'hpuswl-auth-phone.enable_sms_login', 'boolVal')
+        ->serializeToForum('hpuswlAuthPhoneEnablePhoneVerify', 'hpuswl-auth-phone.enable_phone_verify', 'boolVal')
         ->serializeToForum('hpuswlAuthPhonePostChineseLand', 'hpuswlAuthPhonePostChineseLand', 'boolVal')
         ->serializeToForum('hpuswlAuthPhoneTips', 'hpuswlAuthPhoneTips', 'boolVal')
         ->serializeToForum('hpuswlAuthPhoneTipsOneTitle', 'hpuswlAuthPhoneTipsOneTitle')

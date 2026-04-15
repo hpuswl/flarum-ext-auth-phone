@@ -126,19 +126,22 @@ app.initializers.add('hpuswl/flarum-ext-auth-phone', () => {
                 }
             }
 
-            items.add('toggleLoginMethod', (
-                <div className="Form-group">
-                    <span className="SMSAuth-toggleLink" onclick={() => {
-                        this.loginWithPhone = !this.loginWithPhone;
-                        this.displayCode = false;
-                        this.displaySend = "block";
-                        this.countdown = 0;
-                        m.redraw();
-                    }}>
-                        {app.translator.trans(`hpuswl-auth-phone.forum.buttons.${this.loginWithPhone ? 'login_with_password' : 'login_with_phone'}`)}
-                    </span>
-                </div>
-            ), -10);
+            const enableSmsLogin = app.forum.attribute('hpuswlAuthPhoneEnableSmsLogin');
+            if (enableSmsLogin) {
+                items.add('toggleLoginMethod', (
+                    <div className="Form-group">
+                        <span className="SMSAuth-toggleLink" onclick={() => {
+                            this.loginWithPhone = !this.loginWithPhone;
+                            this.displayCode = false;
+                            this.displaySend = "block";
+                            this.countdown = 0;
+                            m.redraw();
+                        }}>
+                            {app.translator.trans(`hpuswl-auth-phone.forum.buttons.${this.loginWithPhone ? 'login_with_password' : 'login_with_phone'}`)}
+                        </span>
+                    </div>
+                ), -10);
+            }
         });
 
         override(LogInModal.prototype, 'onsubmit', function(original, e) {
